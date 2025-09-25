@@ -1,103 +1,145 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardFooter,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import {
+  Check,
+  List,
+  ListCheck,
+  Plus,
+  Sigma,
+  SquarePen,
+  Trash,
+  X,
+} from "lucide-react";
+import { Badge } from "@/components//ui/badge";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="w-full h-screen bg-gray-100 flex justify-center items-center">
+      <Card className="w-lg">
+        <CardHeader className="flex flex-col gap-4">
+          <div className="flex gap-2">
+            <Input placeholder="Adicionar Tarefa" />
+            <Button className="cursor-pointer">
+              <Plus /> Adicionar
+            </Button>
+          </div>
+          <Separator />
+        </CardHeader>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <CardContent>
+          <div className="flex gap-2">
+            <Badge variant="default" className="cursor-pointer">
+              <List /> Todas
+            </Badge>
+            <Badge variant="outline" className="cursor-pointer">
+              <X /> Não finalizadas
+            </Badge>
+            <Badge variant="outline" className="cursor-pointer">
+              <Check /> Concluídas
+            </Badge>
+          </div>
+
+          <div className="mt-4 border-1">
+            <div className="h-14 flex justify-between items-center border-b-1">
+              <div className="w-1 h-full bg-violet-500"></div>
+              <p className="flex-1 px-2 text-sm">Tarefa 1</p>
+              <div className="flex items-center gap-2 px-2">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <SquarePen size={18} className="cursor-pointer" />
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Editar Tarefa</DialogTitle>
+                    </DialogHeader>
+                    <div className="flex gap-2">
+                      <input
+                        className="text-sm px-2"
+                        type="text"
+                        placeholder="Editar Tarefa"
+                      />
+                      <Button className="cursor-pointer">Editar</Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>{" "}
+                <Trash size={18} className="cursor-pointer" />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div className="flex gap-2 items-center justify-between">
+              <ListCheck size={18} />
+              <p className="text-xs flex-1 px-2">Tarefas Concluídas (3/3)</p>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="text-xs h-7 cursor-pointer"
+                  >
+                    <Trash />
+                    Limpar tarefas concluídas
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Tem certeza que deseja excluir x itens?
+                    </AlertDialogTitle>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogAction>Continuar</AlertDialogAction>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          </div>
+
+          <div className="h-2 w-full gray-200 rounded-md mt-4">
+            <div
+              className="h-full bg-violet-500 rounded-md"
+              style={{ width: "50%" }}
+            ></div>
+          </div>
+
+          <div className="flex justify-end mt-2 items-center gap-2">
+            <Sigma size={18} />
+            <p className="text-sm">3 Tarefas no Total</p>
+          </div>
+        </CardContent>
+      </Card>
+    </main>
   );
-}
+};
+
+export default Home;
